@@ -16,7 +16,7 @@ class TodoService {
     }
 
     getAll = async (filterQuery = {}) => {
-        return await TodosModel.find(filterQuery)
+        return await TodosModel.find(filterQuery);
     }
 
     getById = async (id) => {
