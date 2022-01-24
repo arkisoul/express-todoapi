@@ -1,3 +1,4 @@
 module.exports = {
-    todosController: require("./todos")
+    todosController: require("./todos"),
+    authController: require("./auth")
 }

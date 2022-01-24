@@ -1,3 +1,4 @@
 module.exports = {
-    todosService: require("./todos")
+    todosService: require("./todos"),
+    authService: require("./auth")
 }

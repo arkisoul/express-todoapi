@@ -7,7 +7,7 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 require("dotenv").config();
 
-const { todosRouter, usersRouter } = require("./routes");
+const { todosRouter, usersRouter, authRouter } = require("./routes");
 
 const app = express();
 const MONGO_URI = process.env.MONGO_URI;
@@ -42,6 +42,7 @@ app.all("*", (req, res, next) => {
 });
 app.use("/users", usersRouter);
 app.use("/todos", todosRouter);
+app.use("/auth", authRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
