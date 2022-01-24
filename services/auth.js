@@ -1,4 +1,4 @@
-const { compare, hash, genSalt, getRounds } = require("bcrypt")
+const { compare, hash, genSalt } = require("bcrypt")
 
 const { UserNotFoundError, InvalidRequestError, EmailAlreadyRegisteredError } = require("../helpers");
 const { UsersModel } = require("../models");
@@ -9,7 +9,7 @@ class AuthService {
 
     if (!user) throw new UserNotFoundError();
 
-    const passwordMatch = compare(password, user.password);
+    const passwordMatch = await compare(password, user.password);
 
     if (!passwordMatch) throw new InvalidRequestError();
 
