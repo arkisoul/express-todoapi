@@ -29,13 +29,11 @@ mongoose
   ).catch((error) => console.error(`Error connecting to mongodb database ${error.message}`));
 
 app.all("*", (req, res, next) => {
-  console.log(req.method);
   res.setHeader("Access-Control-Allow-Origin", "http://localhost:4200");
   res.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, PATCH, DELETE, HEAD, OPTIONS");
-  console.log(req.headers["access-control-allow-headers"]);
   res.setHeader(
     "Access-Control-Allow-Headers",
-    "Access-Control-Allow-Origin, Access-Control-Allow-Methods, Content-type"
+    "Access-Control-Allow-Origin, Access-Control-Allow-Methods, Content-type, Authorization"
   );
   if(req.method === 'OPTIONS') {
     return res.status(200).send('Ok');

@@ -33,7 +33,7 @@ class TodosController {
         resource: req.originalUrl,
       });
     }
-  }
+  };
 
   edit = async (req, res) => {
     try {
@@ -60,7 +60,31 @@ class TodosController {
         resource: req.originalUrl,
       });
     }
-  }
+  };
+
+  changeStatus = async (req, res) => {
+    try {
+      const todoId = req.params.todoId;
+      const { status } = req.body;
+
+      const todo = await this.todosService.edit(todoId, { isCompleted: status });
+      return res.status(200).json({
+        success: true,
+        message: "Todo updated",
+        error: null,
+        data: todo,
+        resource: req.originalUrl,
+      });
+    } catch (error) {
+      return res.status(error.code ? error.code : 500).json({
+        success: false,
+        message: error.message,
+        error: error,
+        data: null,
+        resource: req.originalUrl,
+      });
+    }
+  };
 
   delete = async (req, res) => {
     try {
@@ -82,7 +106,7 @@ class TodosController {
         resource: req.originalUrl,
       });
     }
-  }
+  };
 
   getAll = async (req, res) => {
     try {
@@ -103,7 +127,7 @@ class TodosController {
         resource: req.originalUrl,
       });
     }
-  }
+  };
 
   getById = async (req, res) => {
     try {
@@ -125,7 +149,7 @@ class TodosController {
         resource: req.originalUrl,
       });
     }
-  }
+  };
 }
 
 module.exports = new TodosController();
