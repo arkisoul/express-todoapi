@@ -31,9 +31,10 @@ mongoose
 app.all("*", (req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "http://localhost:4200");
   res.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, PATCH, DELETE, HEAD, OPTIONS");
+  res.setHeader("Access-Control-Allow-Credentials", true);
   res.setHeader(
     "Access-Control-Allow-Headers",
-    "Access-Control-Allow-Origin, Access-Control-Allow-Methods, Content-type, Authorization"
+    "Access-Control-Allow-Origin, Access-Control-Allow-Methods, Content-type, Authorization, Access-Control-Allow-Credentials"
   );
   if(req.method === 'OPTIONS') {
     return res.status(200).send('Ok');
