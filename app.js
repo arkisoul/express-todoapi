@@ -8,6 +8,7 @@ const cors = require("cors");
 require("dotenv").config();
 
 const { todosRouter, usersRouter, authRouter } = require("./routes");
+const { authMiddleware } = require("./middlewares");
 
 const app = express();
 const MONGO_URI = process.env.MONGO_URI;
@@ -42,7 +43,7 @@ app.all("*", (req, res, next) => {
   return next();
 });
 app.use("/users", usersRouter);
-app.use("/todos", todosRouter);
+app.use("/todos", authMiddleware, todosRouter);
 app.use("/auth", authRouter);
 
 // catch 404 and forward to error handler

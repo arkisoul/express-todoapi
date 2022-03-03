@@ -12,7 +12,7 @@ class AuthController {
     try {
       const user = await this.authService.login(req.body);
 
-      const token = jwt.sign({ userId: user._id }, 'someverysecurekey');
+      const token = jwt.sign({ userId: user._id }, process.env.JWT_KEY);
 
       return res
         .cookie("access_token", token, {
